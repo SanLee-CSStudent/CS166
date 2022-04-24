@@ -6,4 +6,4 @@ DROP TABLE IF EXISTS Graduate;
 CREATE TABLE Professor(SSN NUMERIC(10, 0), name TEXT, age REAL, rank REAL, specialty TEXT, PRIMARY KEY(SSN));
 CREATE TABLE Project(PNO INT, sponsor TEXT, start_date DATE, end_date DATE, budget REAL, PRIMARY KEY(PNO));
 CREATE TABLE Dept(DNO INT, dname TEXT, office TEXT, PRIMARY KEY(DNO));
-CREATE TABLE Graduate(SSN NUMERIC(10, 0), name TEXT, age REAL, degree TEXT, PRIMARY KEY(SSN);
+CREATE TABLE Graduate(SSN NUMERIC(10, 0), name TEXT, age REAL, degree TEXT, PRIMARY KEY(SSN));
