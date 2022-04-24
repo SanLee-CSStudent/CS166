@@ -1,1 +1,0 @@
-FATAL:  could not create lock file "/var/run/postgresql/.s.PGSQL.8192.lock": Permission denied

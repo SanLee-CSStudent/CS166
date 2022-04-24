@@ -1,0 +1,61 @@
+University Database
+CREATE TABLE Professors ( prof ssn CHAR(10), name CHAR(64), age INTEGER, rank INTEGER, speciality CHAR(64), PRIMARY KEY (prof ssn) )
+
+CREATE TABLE Depts ( dno INTEGER, dname CHAR(64), office CHAR(10), PRIMARY KEY (dno) )
+
+CREATE TABLE Runs ( dno INTEGER, prof ssn CHAR(10), PRIMARY KEY ( dno, prof ssn), FOREIGN KEY (prof ssn) REFERENCES Professors, FOREIGN KEY (dno) REFERENCES Depts )
+
+CREATE TABLE Work Dept ( dno INTEGER, prof ssn CHAR(10), pc time INTEGER, PRIMARY KEY (dno, prof ssn), FOREIGN KEY (prof ssn) REFERENCES Professors, FOREIGN KEY (dno) REFERENCES Depts )
+Observe that we would need check constraints or assertions in SQL to enforce the rule that Professors work in at least one department.
+
+CREATE TABLE Project ( pid INTEGER, sponsor CHAR(32), start date DATE, end date DATE, budget FLOAT, PRIMARY KEY (pid) )
+
+CREATE TABLE Graduates ( grad ssn CHAR(10), age INTEGER, name CHAR(64), deg prog CHAR(32), major INTEGER, PRIMARY KEY (grad ssn), FOREIGN KEY (major) REFERENCES Depts )
+Note that the Major table is not necessary since each Graduate has only one major and so this can be an attribute in the Graduates table.
+
+CREATE TABLE Advisor ( senior ssn CHAR(10), grad ssn CHAR(10), PRIMARY KEY (senior ssn, grad ssn), FOREIGN KEY (senior ssn) REFERENCES Graduates (grad ssn), FOREIGN KEY (grad ssn) REFERENCES Graduates )
+
+CREATE TABLE Manages ( pid INTEGER, prof ssn CHAR(10), PRIMARY KEY (pid, prof ssn), FOREIGN KEY (prof ssn) REFERENCES Professors, FOREIGN KEY (pid) REFERENCES Projects )
+
+CREATE TABLE Work In ( pid INTEGER, prof ssn CHAR(10), PRIMARY KEY (pid, prof ssn), FOREIGN KEY (prof ssn) REFERENCES Professors, FOREIGN KEY (pid) REFERENCES Projects )
+Observe that we cannot enforce the participation constraint for Projects in the Work In table without check constraints or assertions in SQL.
+
+CREATE TABLE Supervises ( prof ssn CHAR(10), grad ssn CHAR(10), pid INTEGER, PRIMARY KEY (prof ssn, grad ssn, pid), FOREIGN KEY (prof ssn) REFERENCES Professors, FOREIGN KEY (grad ssn) REFERENCES Graduates, FOREIGN KEY (pid) REFERENCES Projects )
+
+
+Notown Database
+CREATE TABLE Musicians ( ssn CHAR(10), name CHAR(30), PRIMARY KEY (ssn))
+
+CREATE TABLE Instruments ( instrId CHAR(10), dname CHAR(30), key CHAR(5), PRIMARY KEY (instrId))
+
+CREATE TABLE Plays ( ssn CHAR(10), instrId INTEGER, PRIMARY KEY (ssn, instrId), FOREIGN KEY (ssn) REFERENCES Musicians, FOREIGN KEY (instrId) REFERENCES Instruments )
+
+CREATE TABLE Songs Appears ( songId INTEGER, author CHAR(30), title CHAR(30), albumIdentifier INTEGER NOT NULL, PRIMARY KEY (songId), FOREIGN KEY (albumIdentifier) References Album Producer,
+
+CREATE TABLE Telephone Home ( phone CHAR(11), address CHAR(30), PRIMARY KEY (phone), FOREIGN KEY (address) REFERENCES Place,
+
+CREATE TABLE Lives ( ssn CHAR(10), phone CHAR(11), address CHAR(30), PRIMARY KEY (ssn, address), FOREIGN KEY (phone, address) References Telephone Home, FOREIGN KEY (ssn) REFERENCES Musicians )
+
+CREATE TABLE Place ( address CHAR(30) )
+
+CREATE TABLE Perform ( songId INTEGER, ssn CHAR(10), PRIMARY KEY (ssn, songId), FOREIGN KEY (songId) REFERENCES Songs, FOREIGN KEY (ssn) REFERENCES Musicians )
+
+CREATE TABLE Album Producer ( albumIdentifier INTEGER, ssn CHAR(10), copyrightDate DATE, speed INTEGER, title CHAR(30), PRIMARY KEY (albumIdentifier), FOREIGN KEY (ssn) REFERENCES Musicians )
+
+CREATE TABLE Musicians ( ssn CHAR(10), name CHAR(30), PRIMARY KEY (ssn))
+
+CREATE TABLE Instruments ( instrId CHAR(10), dname CHAR(30), key CHAR(5), PRIMARY KEY (instrId))
+
+CREATE TABLE Plays ( ssn CHAR(10), instrId INTEGER, PRIMARY KEY (ssn, instrId), FOREIGN KEY (ssn) REFERENCES Musicians, FOREIGN KEY (instrId) REFERENCES Instruments )
+
+CREATE TABLE Songs Appears ( songId INTEGER, author CHAR(30), title CHAR(30), albumIdentifier INTEGER NOT NULL, PRIMARY KEY (songId), FOREIGN KEY (albumIdentifier) References Album Producer,
+
+CREATE TABLE Telephone Home ( phone CHAR(11), address CHAR(30), PRIMARY KEY (phone), FOREIGN KEY (address) REFERENCES Place,
+
+CREATE TABLE Lives ( ssn CHAR(10), phone CHAR(11), address CHAR(30), PRIMARY KEY (ssn, address), FOREIGN KEY (phone, address) References Telephone Home, FOREIGN KEY (ssn) REFERENCES Musicians )
+
+CREATE TABLE Place ( address CHAR(30) )
+
+CREATE TABLE Perform ( songId INTEGER, ssn CHAR(10), PRIMARY KEY (ssn, songId), FOREIGN KEY (songId) REFERENCES Songs, FOREIGN KEY (ssn) REFERENCES Musicians )
+
+CREATE TABLE Album Producer ( albumIdentifier INTEGER, ssn CHAR(10), copyrightDate DATE, speed INTEGER, title CHAR(30), PRIMARY KEY (albumIdentifier), FOREIGN KEY (ssn) REFERENCES Musicians )
