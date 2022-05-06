@@ -6,7 +6,7 @@ DROP TABLE IF EXISTS updates;
 DROP TABLE IF EXISTS update_menu;
 DROP TABLE IF EXISTS update_item_IS;
 DROP TABLE IF EXISTS Exists_in_IS;
-DROP TABLE IF EXISTS Has_status_in_IS
+DROP TABLE IF EXISTS Has_status_in_IS;
 
 -- Entities
 CREATE TABLE Users( phoneNum CHAR(13) UNIQUE, login CHAR(50) NOT NULL, password CHAR(50) NOT NULL, FavItems char(400), Type CHAR(8) NOT NULL,
