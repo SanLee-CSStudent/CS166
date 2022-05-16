@@ -22,7 +22,6 @@ HAVING COUNT(*) > 2;
 --WHERE p.pid = c.pid AND s.sid = c.sid
 --GROUP BY s.sname
 --EXCEPT
-SELECT s.sname,  COUNT(*) AS PartsNum
+SELECT s.sname
 FROM parts p, catalog c, suppliers s
-WHERE p.pid = c.pid AND s.sid = c.sid AND NOT p.color = 'Green'
-GROUP BY s.sname;
+WHERE p.pid = c.pid AND s.sid = c.sid AND p.color = 'Green';
