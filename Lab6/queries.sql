@@ -1,20 +1,20 @@
 --First query
-SELECT s.sname, COUNT(*) AS 'Number of Parts'
+SELECT s.sname, COUNT(*) AS Number of Parts
 FROM parts p, catalog c, suppliers s
 WHERE p.pid = c.pid AND s.sid = c.sid;
 
 --Second query
-SELECT s.sname, COUNT(*) AS 'Number of Parts'
+SELECT s.sname, COUNT(*) AS Number of Parts
 FROM parts p, catalog c, suppliers s
 WHERE p.pid = c.pid AND s.sid = c.sid
 HAVING COUNT(*) > 3;
 
 --Third query
-SELECT s.sname, COUNT(*) AS 'Number of Parts'
+SELECT s.sname, COUNT(*) AS Number of Parts
 FROM parts p, catalog c, suppliers s
 WHERE p.pid = c.pid AND s.sid = c.sid
 INTERSECT
-SELECT s.sname,  COUNT(*) AS 'Number of Parts'
+SELECT s.sname,  COUNT(*) AS Number of Parts
 FROM parts p, catalog c, suppliers s
 WHERE p.pid = c.pid AND s.sid = c.sid AND s.sname NOT IN(
     SELECT s.sname
