@@ -8,8 +8,8 @@ GROUP BY Suppliers;
 SELECT s.sname AS Suppliers, COUNT(*) AS PartsNum
 FROM parts p, catalog c, suppliers s
 WHERE p.pid = c.pid AND s.sid = c.sid
-GROUP BY Suppliers, PartsNum
-HAVING PartsNum > 3;
+GROUP BY Suppliers
+HAVING PartsNum > 2;
 
 --Third query
 SELECT s.sname AS Suppliers, COUNT(*) AS PartsNum
