@@ -5,6 +5,6 @@
 5,I Brake for Crop Circles Sticker,Translucent
 6,Anti-Gravity Turbine Generator,Cyan
 7,Anti-Gravity Turbine Generator,Magenta
-8,Fire Hydrant Cap,Red
+8,Fire Hydrant Cap,Green
 9,7 Segment Display,Green
 \.
