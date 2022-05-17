@@ -18,9 +18,10 @@ HAVING COUNT(*) > 2;
 --GROUP BY Suppliers
 --INTERSECT
 SELECT s.sname AS Suppliers
-FROM parts p, catalog c, suppliers s
+FROM suppliers s
 WHERE s.sname NOT IN (
     SELECT s.sname
+    FROM parts p, catalog c, suppliers s
     WHERE p.pid = c.pid AND s.sid = c.sid AND NOT p.color = 'Green'
     GROUP BY s.sname)
 GROUP BY Suppliers;
