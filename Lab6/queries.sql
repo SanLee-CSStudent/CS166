@@ -24,4 +24,5 @@ HAVING COUNT(*) > 2;
 --EXCEPT
 SELECT s.sname
 FROM parts p, catalog c, suppliers s
-WHERE p.pid = c.pid AND s.sid = c.sid AND NOT p.color = 'Green';
+WHERE p.pid = c.pid AND s.sid = c.sid AND NOT p.color = 'Green'
+GROUP BY s.sname;
