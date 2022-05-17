@@ -22,7 +22,7 @@ WHERE p.pid = c.pid AND s.sid = c.sid AND s.sname IN(
         FROM parts p, catalog c, suppliers s
         WHERE p.pid = c.pid AND s.sid = c.sid AND NOT p.color = 'Green'
         GROUP BY s.sname)
-    GROUP BY Suppliers;
+    GROUP BY Suppliers
 )
 GROUP BY Suppliers;
 
