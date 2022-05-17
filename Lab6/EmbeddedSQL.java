@@ -252,24 +252,88 @@ public class EmbeddedSQL {
       // Your code goes here.
       // ...
       // ...
+	   try{
+	         String query = "SELECT s.sname AS Suppliers, COUNT(*) AS PartsNum\r\n"
+	         		+ "FROM parts p, catalog c, suppliers s\r\n"
+	         		+ "WHERE p.pid = c.pid AND s.sid = c.sid\r\n"
+	         		+ "GROUP BY Suppliers";
+
+	         int rowCount = esql.executeQuery(query);
+	         System.out.println ("total row(s): " + rowCount);
+	      }catch(Exception e){
+	         System.err.println (e.getMessage());
+	      }
    }//end Query1
 
    public static void Query2(EmbeddedSQL esql){
       // Your code goes here.
       // ...
       // ...
+	   try{
+	         String query = "SELECT s.sname AS Suppliers, COUNT(*) AS PartsNum\r\n"
+	         		+ "FROM parts p, catalog c, suppliers s\r\n"
+	         		+ "WHERE p.pid = c.pid AND s.sid = c.sid\r\n"
+	         		+ "GROUP BY Suppliers\r\n"
+	         		+ "HAVING COUNT(*) > 2";
+
+	         int rowCount = esql.executeQuery(query);
+	         System.out.println ("total row(s): " + rowCount);
+	      }catch(Exception e){
+	         System.err.println (e.getMessage());
+	      }
    }//end Query2
 
    public static void Query3(EmbeddedSQL esql){
       // Your code goes here.
       // ...
       // ...
+	   try{
+	         String query = "SELECT s.sname AS Suppliers, COUNT(p.pid) AS PartsNum\r\n"
+	         		+ "FROM parts p, catalog c, suppliers s\r\n"
+	         		+ "WHERE p.pid = c.pid AND s.sid = c.sid AND s.sname IN(\r\n"
+	         		+ "    SELECT s.sname AS Suppliers\r\n"
+	         		+ "    FROM suppliers s\r\n"
+	         		+ "    WHERE s.sname NOT IN (\r\n"
+	         		+ "        SELECT s.sname\r\n"
+	         		+ "        FROM parts p, catalog c, suppliers s\r\n"
+	         		+ "        WHERE p.pid = c.pid AND s.sid = c.sid AND NOT p.color = 'Green'\r\n"
+	         		+ "        GROUP BY s.sname)\r\n"
+	         		+ "    GROUP BY Suppliers\r\n"
+	         		+ ")\r\n"
+	         		+ "GROUP BY Suppliers";
+
+	         int rowCount = esql.executeQuery(query);
+	         System.out.println ("total row(s): " + rowCount);
+	      }catch(Exception e){
+	         System.err.println (e.getMessage());
+	      }
    }//end Query3
 
    public static void Query4(EmbeddedSQL esql){
       // Your code goes here.
       // ...
       // ...
+	   try{
+	         String query = "SELECT s.sname AS Suppliers, MAX(c.cost) AS ExpensivePart\r\n"
+	         		+ "FROM catalog c, suppliers s\r\n"
+	         		+ "WHERE s.sid = c.sid AND s.sname IN (\r\n"
+	         		+ "    SELECT s.sname AS Suppliers\r\n"
+	         		+ "    FROM parts p, catalog c, suppliers s\r\n"
+	         		+ "    WHERE p.pid = c.pid AND s.sid = c.sid AND p.color = 'Green'\r\n"
+	         		+ "    GROUP BY Suppliers\r\n"
+	         		+ "    INTERSECT\r\n"
+	         		+ "    SELECT s.sname AS Suppliers\r\n"
+	         		+ "    FROM parts p, catalog c, suppliers s\r\n"
+	         		+ "    WHERE p.pid = c.pid AND s.sid = c.sid AND p.color = 'Red'\r\n"
+	         		+ "    GROUP BY Suppliers\r\n"
+	         		+ ")\r\n"
+	         		+ "GROUP BY Suppliers";
+
+	         int rowCount = esql.executeQuery(query);
+	         System.out.println ("total row(s): " + rowCount);
+	      }catch(Exception e){
+	         System.err.println (e.getMessage());
+	      }
    }//end Query4
 
    public static void Query5(EmbeddedSQL esql){
