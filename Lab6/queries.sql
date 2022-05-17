@@ -29,7 +29,7 @@ GROUP BY Suppliers;
 --Fourth query
 SELECT s.sname AS Suppliers, MAX(c.cost) AS ExpensivePart
 FROM catalog c, suppliers s
-WHERE s.sname IN (
+WHERE s.sid = c.sid AND s.sname IN (
     SELECT s.sname AS Suppliers
     FROM parts p, catalog c, suppliers s
     WHERE p.pid = c.pid AND s.sid = c.sid AND p.color = 'Green'
