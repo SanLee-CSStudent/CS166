@@ -26,4 +26,7 @@ WHERE p.pid = c.pid AND s.sid = c.sid AND s.sname IN(
 )
 GROUP BY Suppliers;
 
-
+SELECT s.sname
+FROM parts p, catalog c, suppliers s
+WHERE p.pid = c.pid AND s.sid = c.sid AND p.color = 'Green' AND p.color = 'Red'
+GROUP BY s.sname

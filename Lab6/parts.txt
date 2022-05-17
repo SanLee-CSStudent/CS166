@@ -1,5 +1,5 @@
 1,Left Handed Bacon Stretcher Cover,Red
-2,Smoke Shifter End,Green
+2,Smoke Shifter End,Black
 3,Acme Widget Washer,Red
 4,Acme Widget Washer,Silver
 5,I Brake for Crop Circles Sticker,Translucent
