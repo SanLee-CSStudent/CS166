@@ -27,12 +27,17 @@ WHERE p.pid = c.pid AND s.sid = c.sid AND s.sname IN(
 GROUP BY Suppliers;
 
 --Fourth query
-SELECT s.sname AS Suppliers, MAX(p.cost) AS ExpensivePart
-FROM parts p, catalog c, suppliers s
-WHERE p.pid = c.pid AND s.sid = c.sid AND p.color = 'Green'
-GROUP BY Suppliers
-INTERSECT
-SELECT s.sname AS Suppliers, MAX(p.cost) AS ExpensivePart
-FROM parts p, catalog c, suppliers s
-WHERE p.pid = c.pid AND s.sid = c.sid AND p.color = 'Red'
-GROUP BY Suppliers
+SELECT s.sname AS Suppliers, MAX(c.cost) AS ExpensivePart
+FROM catalog c, suppliers s
+WHERE s.sname IN (
+    SELECT s.sname AS Suppliers
+    FROM parts p, catalog c, suppliers s
+    WHERE p.pid = c.pid AND s.sid = c.sid AND p.color = 'Green'
+    GROUP BY Suppliers
+    INTERSECT
+    SELECT s.sname AS Suppliers, MAX(c.cost) AS ExpensivePart
+    FROM parts p, catalog c, suppliers s
+    WHERE p.pid = c.pid AND s.sid = c.sid AND p.color = 'Red'
+    GROUP BY Suppliers
+)
+GROUP BY Suppliers;
