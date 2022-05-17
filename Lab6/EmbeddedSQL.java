@@ -366,7 +366,7 @@ public class EmbeddedSQL {
 	         System.out.print("\tEnter part name: ");
 	         String input = in.readLine();
 	         String tokenizedInput = "\'" + input + "\'";
-	         query += input;
+	         query += tokenizedInput;
 
 	         int rowCount = esql.executeQuery(query);
 	         System.out.println ("total row(s): " + rowCount);
