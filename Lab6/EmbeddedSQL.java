@@ -340,12 +340,38 @@ public class EmbeddedSQL {
       // Your code goes here.
       // ...
       // ...
+	   try{
+	         String query = "SELECT p.pname, c.cost\r\n"
+	         		+ "FROM catalog c, parts p\r\n"
+	         		+ "WHERE c.pid = p.pid AND cost < ";
+	         System.out.print("\tEnter cost: $");
+	         String input = in.readLine();
+	         query += input;
+
+	         int rowCount = esql.executeQuery(query);
+	         System.out.println ("total row(s): " + rowCount);
+	      }catch(Exception e){
+	         System.err.println (e.getMessage());
+	      }
    }//end Query5
 
    public static void Query6(EmbeddedSQL esql){
       // Your code goes here.
       // ...
       // ...
+	   try{
+	         String query = "SELECT s.address AS Address, p.pname AS Part\r\n"
+	         		+ "FROM catalog c, parts p, suppliers s\r\n"
+	         		+ "WHERE c.pid = p.pid AND c.sid = s.sid AND p.pname = ";
+	         System.out.print("\tEnter part name: $");
+	         String input = in.readLine();
+	         query += input;
+
+	         int rowCount = esql.executeQuery(query);
+	         System.out.println ("total row(s): " + rowCount);
+	      }catch(Exception e){
+	         System.err.println (e.getMessage());
+	      }
    }//end Query6
 
 }//end EmbeddedSQL

@@ -41,3 +41,13 @@ WHERE s.sid = c.sid AND s.sname IN (
     GROUP BY Suppliers
 )
 GROUP BY Suppliers;
+
+--Fifth query
+--SELECT p.pname, c.cost
+--FROM catalog c, parts p
+--WHERE c.pid = p.pid AND cost < 10;
+
+--Sixth query
+--SELECT s.address AS Address, p.pname AS Part
+--FROM catalog c, parts p, suppliers s
+--WHERE c.pid = p.pid AND c.sid = s.sid AND p.pname = '';
