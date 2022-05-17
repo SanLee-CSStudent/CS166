@@ -365,7 +365,7 @@ public class EmbeddedSQL {
 	         		+ "WHERE c.pid = p.pid AND c.sid = s.sid AND p.pname = ";
 	         System.out.print("\tEnter part name: ");
 	         String input = in.readLine();
-	         String tokenizedInput = "\'" + input + "\'"
+	         String tokenizedInput = "\'" + input + "\'";
 	         query += input;
 
 	         int rowCount = esql.executeQuery(query);
