@@ -363,8 +363,9 @@ public class EmbeddedSQL {
 	         String query = "SELECT s.address AS Address, p.pname AS Part\r\n"
 	         		+ "FROM catalog c, parts p, suppliers s\r\n"
 	         		+ "WHERE c.pid = p.pid AND c.sid = s.sid AND p.pname = ";
-	         System.out.print("\tEnter part name: $");
+	         System.out.print("\tEnter part name: ");
 	         String input = in.readLine();
+	         String tokenizedInput = "\'" + input + "\'"
 	         query += input;
 
 	         int rowCount = esql.executeQuery(query);
