@@ -17,9 +17,11 @@ HAVING COUNT(*) > 2;
 --WHERE p.pid = c.pid AND s.sid = c.sid
 --GROUP BY Suppliers
 --INTERSECT
+SELECT s.sname AS Suppliers, COUNT(*) AS PartsNum
+FROM parts p, catalog c, suppliers s
+WHERE p.pid = c.pid AND s.sid = c.sid
+GROUP BY Suppliers
+EXCEPT
 SELECT s.sname
 FROM parts p, catalog c, suppliers s
-WHERE s.sname NOT IN(
-    SELECT s.sname
-    WHERE p.pid = c.pid AND s.sid = c.sid AND NOT p.color = 'Green'
-);
+WHERE p.pid = c.pid AND s.sid = c.sid AND NOT p.color = 'Green';
