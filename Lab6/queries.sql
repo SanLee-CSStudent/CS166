@@ -50,4 +50,5 @@ GROUP BY Suppliers;
 --Sixth query
 --SELECT s.address AS Address, p.pname AS Part
 --FROM catalog c, parts p, suppliers s
---WHERE c.pid = p.pid AND c.sid = s.sid AND p.pname = '';
+--WHERE c.pid = p.pid AND c.sid = s.sid AND p.pname = ''
+--GROUP BY Address;
