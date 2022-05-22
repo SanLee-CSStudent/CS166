@@ -5,10 +5,9 @@
 --color (color_id integer, color_name varchar(20));
 
 --First Query
-SELECT n.part_number AS Part_ID, COUNT(*) AS Count_On_Hand
+SELECT COUNT(*) AS Count_On_Hand
 FROM part_nyc n
-WHERE n.on_hand > 70
-GROUP BY Part_ID;
+WHERE n.on_hand > 70;
 
 --Second Query
 SELECT c.color_name AS NYC_Color, SUM(n.on_hand) AS total_parts
