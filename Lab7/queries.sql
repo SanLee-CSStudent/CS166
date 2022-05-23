@@ -56,16 +56,9 @@ WHERE supp.supplier_id IN (
     GROUP BY n.supplier
 );
 
-SELECT COUNT(*)
-    FROM part_nyc n
-    WHERE NOT EXISTS(SELECT s.part_number
-        FROM part_sfo s
-        WHERE s.part_number = n.part_number
-    );
-
 --Fifth Query???
---UPDATE part_nyc
---SET on_hand - 10;
+UPDATE part_nyc n
+SET n.on_hand - 10;
 
 --Sixth Query???
 --DELETE
