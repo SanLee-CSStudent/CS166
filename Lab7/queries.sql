@@ -29,10 +29,11 @@ GROUP BY c1.color_name;
 --    FROM part_sfo s
 --    WHERE supp.supplier_id = s.supplier AND n.supplier = s.supplier
 --);
-
-SELECT SUM(s.on_hand)
-FROM supplier supp, part_sfo s
-WHERE supp.supplier_id = s.supplier;
+SELECT supp.supplier_name
+FROM supplier supp, part_sfo s, part_nyc n
+WHERE supp.supplier_id = s.supplier AND supp.supplier_id = n.supplier
+GROUP BY supp.supplier_name
+HAVING SUM(s.on_hand) < SUM(n.on_hand);
 
 --Fourth Query
 SELECT supp.supplier_name
