@@ -29,10 +29,10 @@ GROUP BY c1.color_name;
 --    FROM part_sfo s
 --    WHERE supp.supplier_id = s.supplier AND n.supplier = s.supplier
 --);
-SELECT supp.supplier_name, SUM(s.on_hand)
+
+SELECT SUM(s.on_hand)
 FROM supplier supp, part_sfo s
-WHERE supp.supplier_id = s.supplier
-GROUP BY supp.supplier_name;
+WHERE supp.supplier_id = s.supplier;
 
 --Fourth Query
 SELECT supp.supplier_name
