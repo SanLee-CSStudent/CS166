@@ -31,11 +31,11 @@ GROUP BY c1.color_name;
 --);
 SELECT supp.supplier_name
 FROM supplier supp, (SELECT supp.supplier_name AS name, SUM(n.on_hand) AS sum
-    FROM part_nyc n
+    FROM supplier supp, part_nyc n
     WHERE supp.supplier_id = n.supplier
     GROUP BY supp.supplier_name) t1, 
     (SELECT supp.supplier_name AS name, SUM(s.on_hand) AS sum
-    FROM part_sfo s
+    FROM supplier supp, part_sfo s
     WHERE supp.supplier_id = s.supplier
     GROUP BY supp.supplier_name
     ) t2
