@@ -57,8 +57,14 @@ WHERE supp.supplier_id IN (
 );
 
 --Fifth Query???
+SELECT n.on_hand
+FROM part_nyc n;
+
 UPDATE part_nyc n
 SET n.on_hand - 10;
+
+SELECT n.on_hand
+FROM part_nyc n;
 
 --Sixth Query???
 --DELETE
