@@ -10,15 +10,17 @@ FROM part_nyc n
 WHERE n.on_hand > 70;
 
 --Second Query
-SELECT c.color_name, SUM(n.on_hand) AS total_parts
-FROM color c, part_nyc n
-WHERE c.color_name = 'Red' AND c.color_id = n.color
-GROUP BY c.color_name
-UNION
-SELECT c1.color_name, SUM(s.on_hand) AS total_parts
-FROM color c1, part_sfo s
-WHERE c1.color_name = 'Red' AND c1.color_id = s.color
-GROUP BY c1.color_name;
+SELECT SUM(t.total_parts)
+FROM(SELECT c.color_name AS color, SUM(n.on_hand) AS total_parts
+    FROM color c, part_nyc n
+    WHERE c.color_name = 'Red' AND c.color_id = n.color
+    GROUP BY c.color_name
+    UNION
+    SELECT c1.color_name, SUM(s.on_hand) AS total_parts
+    FROM color c1, part_sfo s
+    WHERE c1.color_name = 'Red' AND c1.color_id = s.color
+    GROUP BY c1.color_name) t
+GROUP BY t.color;
 
 --Third Query
 SELECT supp.supplier_name
