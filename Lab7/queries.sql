@@ -27,13 +27,12 @@ GROUP BY c1.color_name;
 --GROUP BY supp.supplier_name
 --HAVING SUM(n.on_hand) > (SELECT SUM(s.on_hand)
 --    FROM part_sfo s
---    WHERE supp.supplier_id = s.supplier AND n.supplier = s.supplier
+--    WHERE supp.supplier_id = s.supplier
 --);
-SELECT supp.supplier_name
-FROM supplier supp, part_sfo s, part_nyc n
-WHERE supp.supplier_id = s.supplier AND supp.supplier_id = n.supplier
-GROUP BY supp.supplier_name
-HAVING SUM(s.on_hand) < SUM(n.on_hand);
+SELECT SUM(s.on_hand) AS sum
+FROM supplier supp, part_sfo s
+WHERE supp.supplier_id = s.supplier
+GROUP BY supp.supplier_name;
 
 --Fourth Query
 SELECT supp.supplier_name
