@@ -67,4 +67,5 @@ WHERE on_hand < 30;
 
 SELECT n.on_hand
 FROM part_nyc n
-WHERE n.on_hand < 30;
+WHERE n.on_hand < 30
+LIMIT 10;
