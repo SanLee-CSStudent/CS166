@@ -30,16 +30,15 @@ GROUP BY c1.color_name;
 --    WHERE supp.supplier_id = s.supplier
 --);
 SELECT supp1.supplier_name
-FROM supplier supp1, part_nyc n
-WHERE supp1.supplier_id = n.supplier
+FROM supplier supp1, part_nyc n, part_sfo s
+WHERE supp1.supplier_id = n.supplier AND supp1.supplier_id = s.supplier
 GROUP By supp1.supplier_name
-HAVING SUM(n.on_hand) > (
-    SELECT SUM(s.on_hand) AS sum
-    FROM supplier supp, part_sfo s
-    WHERE supp.supplier_id = s.supplier
-    GROUP BY supp.supplier_name
-);
+HAVING SUM(n.on_hand) > SUM(s.on_hand);
 
+--    SELECT SUM(s.on_hand) AS sum
+--    FROM supplier supp, part_sfo s
+--    WHERE supp.supplier_id = s.supplier
+--    GROUP BY supp.supplier_name
 --Fourth Query
 SELECT supp.supplier_name
 FROM supplier supp
