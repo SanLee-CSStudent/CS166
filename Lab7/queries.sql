@@ -21,7 +21,7 @@ WHERE c.color_name = 'Red' AND c.color_id = s.color
 GROUP BY SFO_Color;
 
 --Third Query
-SELECT supp.supplier_name, 
+SELECT supp.supplier_name
 FROM supplier supp, part_nyc n
 WHERE supp.supplier_id = n.supplier
 HAVING SUM(n.on_hand) > (SELECT SUM(s.on_hand)
@@ -30,6 +30,17 @@ HAVING SUM(n.on_hand) > (SELECT SUM(s.on_hand)
 );
 
 --Fourth Query
+SELECT supp.supplier_name
+FROM supplier supp
+WHERE supp.supplier_id IN (
+    SELECT n.supplier
+    FROM part_nyc n
+    WHERE NOT EXISTS(SELECT s.part_number
+        FROM part_sfo s1
+        WHERE s1.part_number = n.part_number
+    )
+    GROUP BY n.supplier
+);
 
 
 --Fifth Query???
