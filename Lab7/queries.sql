@@ -29,13 +29,13 @@ GROUP BY c1.color_name;
 --    FROM part_sfo s
 --    WHERE supp.supplier_id = s.supplier
 --);
-SELECT supp.supplier_name
-FROM supplier supp, part_nyc n
-WHERE supp.supplier_id = n.supplier
-GROUP By supp.supplier_name
+SELECT supp1.supplier_name
+FROM supplier supp1, part_nyc n
+WHERE supp1.supplier_id = n.supplier
+GROUP By supp1.supplier_name
 HAVING SUM(n.on_hand) > (
     SELECT SUM(s.on_hand) AS sum
-    FROM part_sfo s
+    FROM supplier supp, part_sfo s
     WHERE supp.supplier_id = s.supplier
     GROUP BY supp.supplier_name
 );
