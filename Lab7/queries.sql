@@ -21,14 +21,6 @@ WHERE c1.color_name = 'Red' AND c1.color_id = s.color
 GROUP BY c1.color_name;
 
 --Third Query
---SELECT supp.supplier_name
---FROM supplier supp, part_nyc n
---WHERE supp.supplier_id = n.supplier
---GROUP BY supp.supplier_name
---HAVING SUM(n.on_hand) > (SELECT SUM(s.on_hand)
---    FROM part_sfo s
---    WHERE supp.supplier_id = s.supplier
---);
 SELECT supp.supplier_name
 FROM supplier supp, (SELECT supp.supplier_name AS name, SUM(n.on_hand) AS sum
     FROM supplier supp, part_nyc n
@@ -41,14 +33,15 @@ FROM supplier supp, (SELECT supp.supplier_name AS name, SUM(n.on_hand) AS sum
     ) t2
 WHERE t1.sum > t2.sum AND t1.name = supp.supplier_name AND t2.name = supp.supplier_name
 GROUP BY supp.supplier_name;
-    SELECT supp.supplier_name, SUM(n.on_hand) AS sum
-    FROM supplier supp, part_nyc n
-    WHERE supp.supplier_id = n.supplier
-    GROUP BY supp.supplier_name;
-    SELECT supp.supplier_name, SUM(s.on_hand) AS sum
-    FROM supplier supp, part_sfo s
-    WHERE supp.supplier_id = s.supplier
-    GROUP BY supp.supplier_name;
+
+--SELECT supp.supplier_name, SUM(n.on_hand) AS sum
+--FROM supplier supp, part_nyc n
+--WHERE supp.supplier_id = n.supplier
+--GROUP BY supp.supplier_name;
+--SELECT supp.supplier_name, SUM(s.on_hand) AS sum
+--FROM supplier supp, part_sfo s
+--WHERE supp.supplier_id = s.supplier
+--GROUP BY supp.supplier_name;
 
 --Fourth Query
 SELECT supp.supplier_name
@@ -63,6 +56,12 @@ WHERE supp.supplier_id IN (
     GROUP BY n.supplier
 );
 
+SELECT COUNT(*)
+    FROM part_nyc n
+    WHERE NOT EXISTS(SELECT s.part_number
+        FROM part_sfo s
+        WHERE s.part_number = n.part_number
+    );
 
 --Fifth Query???
 --UPDATE part_nyc
