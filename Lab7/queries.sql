@@ -21,14 +21,18 @@ WHERE c1.color_name = 'Red' AND c1.color_id = s.color
 GROUP BY c1.color_name;
 
 --Third Query
-SELECT supp.supplier_name
-FROM supplier supp, part_nyc n
-WHERE supp.supplier_id = n.supplier
-GROUP BY supp.supplier_name
-HAVING SUM(n.on_hand) > (SELECT SUM(s.on_hand)
-    FROM supplier supp, part_sfo s
-    WHERE supp.supplier_id = s.supplier
-);
+--SELECT supp.supplier_name
+--FROM supplier supp, part_nyc n
+--WHERE supp.supplier_id = n.supplier
+--GROUP BY supp.supplier_name
+--HAVING SUM(n.on_hand) > (SELECT SUM(s.on_hand)
+--    FROM part_sfo s
+--    WHERE supp.supplier_id = s.supplier AND n.supplier = s.supplier
+--);
+SELECT supp.supplier_name, SUM(s.on_hand)
+FROM supplier supp, part_sfo s
+WHERE supp.supplier_id = s.supplier
+GROUP BY supp.supplier_name;
 
 --Fourth Query
 SELECT supp.supplier_name
