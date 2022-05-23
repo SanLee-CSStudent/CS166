@@ -33,7 +33,6 @@ FROM supplier supp, (SELECT supp.supplier_name AS name, SUM(n.on_hand) AS sum
     ) t2
 WHERE t1.sum > t2.sum AND t1.name = supp.supplier_name AND t2.name = supp.supplier_name
 GROUP BY supp.supplier_name;
-
 --SELECT supp.supplier_name, SUM(n.on_hand) AS sum
 --FROM supplier supp, part_nyc n
 --WHERE supp.supplier_id = n.supplier
