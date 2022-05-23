@@ -61,8 +61,8 @@ SELECT n.on_hand
 FROM part_nyc n
 LIMIT 10;
 
-UPDATE part_nyc n
-SET n.on_hand - 10;
+UPDATE part_nyc
+SET on_hand = on_hand - 10;
 
 SELECT n.on_hand
 FROM part_nyc n
